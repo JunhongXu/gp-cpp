@@ -9,6 +9,11 @@ namespace gp{
         params["len_scale"] = len_scale;
     }
 
+
+    double RBF::compute_cov(Eigen::VectorXd& x1, Eigen::VectorXd& x2){
+        return rbf_function(x1, x2);
+    }
+
     Eigen::MatrixXd RBF::compute_K(std::vector<Eigen::VectorXd>& x1, std::vector<Eigen::VectorXd>& x2){
         int num_x1_samples = x1.size();
         int num_x2_samples = x2.size();
@@ -22,6 +27,19 @@ namespace gp{
                 double rbf_output = rbf_function(x1_sample, x2_sample);
                 result(x1_idx, x2_idx) = rbf_output;
             }
+        }
+        return result;
+    }
+
+    Eigen::VectorXd RBF::compute_k(std::vector<Eigen::VectorXd>& X, Eigen::VectorXd& x){
+        int num_x1_samples = X.size();
+
+        Eigen::VectorXd result = Eigen::VectorXd::Zero(num_x1_samples, 1);
+
+        for(int idx = 0; idx < num_x1_samples; idx++){
+            auto& x1_sample = X[idx];
+            double rbf_output = rbf_function(x1_sample, x);
+            result(idx) = rbf_output;
         }
         return result;
     }

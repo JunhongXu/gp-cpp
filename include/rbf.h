@@ -13,7 +13,11 @@ namespace gp{
 
             ~RBF(){}
 
-            virtual Eigen::MatrixXd compute_K(std::vector<Eigen::VectorXd>& x1, std::vector<Eigen::VectorXd>& x2) override;
+            double compute_cov(Eigen::VectorXd& x1, Eigen::VectorXd& x2) override;
+
+            Eigen::MatrixXd compute_K(std::vector<Eigen::VectorXd>& x1, std::vector<Eigen::VectorXd>& x2) override;
+
+            Eigen::VectorXd compute_k(std::vector<Eigen::VectorXd>& X, Eigen::VectorXd& x) override;
 
         private:
             /** Calculate the output of RBF*/

@@ -20,6 +20,21 @@ namespace gp{
             // default deconstructor
             ~Kernel(){}
 
+            /** Compute covariance between random variable x1 and random variable x2*/
+            virtual double compute_cov(Eigen::VectorXd& x1, Eigen::VectorXd& x2){
+                std::cout<<"Not implemented!"<<std::endl;
+                exit(1);
+            }
+
+            /** Compute covariance vector between a set of examples and a single example
+             *  @param X a set of examples with dimensionality of N by M
+             *  @param x the single example with dimensionality of M by 1
+             *  @return covariance vector between x1's examples and x2 with dimensionality of N by 1*/
+            virtual Eigen::VectorXd compute_k(std::vector<Eigen::VectorXd>& X, Eigen::VectorXd& x){
+                std::cout<<"Not implemented!"<<std::endl;
+                exit(1);
+            }
+
             /** Compute the covariance matrix between two sets of input values based on the kernel function k:
              *  x1 and x2, K_{nm} = k(x_{1n}, x_{1m}).
              *  @param x1 first input data matrix with dimension of num_example_1 by inpt_dim

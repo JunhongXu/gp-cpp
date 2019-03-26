@@ -1,5 +1,6 @@
 set(GP_SRC 
     src/rbf.cpp
+    src/gp.cpp
     )
 
 set(GP_INCLUDES 
